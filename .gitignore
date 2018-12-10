@@ -1,0 +1,7 @@
+/SqlSample/bin
+/SqlSample/obj
+SqlSample/.vs/SqlSample/v15/Server/sqlite3/storage.ide-wal
+SqlSample/.vs/SqlSample/v15/Server/sqlite3/storage.ide-shm
+SqlSample/.vs/SqlSample/v15/Server/sqlite3/storage.ide
+SqlSample/.vs/SqlSample/v15/Server/sqlite3/db.lock
+SqlSample/.vs/SqlSample/v15/.suo
