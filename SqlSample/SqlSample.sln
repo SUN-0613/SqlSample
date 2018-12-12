@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlSample", "SqlSample.csproj", "{4BA3BFB0-57A6-4BAF-9D50-D2E27D4364D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "..\Common\Common.csproj", "{326C56D4-4067-435F-B7B0-A93B167C2186}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "..\..\Common\Common\Common.csproj", "{326C56D4-4067-435F-B7B0-A93B167C2186}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
