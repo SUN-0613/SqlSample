@@ -15,10 +15,17 @@ namespace SqlSample.Form.ViewModel
     {
 
         /// <summary>
+        /// DBList.Model
+        /// </summary>
+        private Model.DBList _Model;
+
+        /// <summary>
         /// new
         /// </summary>
         public DBList()
         {
+
+            _Model = new Model.DBList();
 
         }
 
@@ -27,7 +34,10 @@ namespace SqlSample.Form.ViewModel
         /// </summary>
         public void Dispose()
         {
-            throw new NotImplementedException();
+
+            _Model.Dispose();
+            _Model = null;
+
         }
     }
 

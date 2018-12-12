@@ -6,7 +6,13 @@
         xmlns:local="clr-namespace:SqlSample.Form.View"
         mc:Ignorable="d"
         Title="DBList" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <DockPanel>
+
+        <TreeView DockPanel.Dock="Left" MinWidth="200" />
+
+        <TextBlock DockPanel.Dock="Top" Text="Table.Name" />
+
+        <DataGrid />
+
+    </DockPanel>
 </Window>
