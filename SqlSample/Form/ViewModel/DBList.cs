@@ -1,5 +1,6 @@
 ﻿using AYam.Common.ViewModel;
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,15 @@ namespace SqlSample.Form.ViewModel
     public class DBList : VMBase, IDisposable
     {
 
+        #region BindingProperty
+
+        /// <summary>
+        /// データベース一覧
+        /// </summary>
+        public ObservableCollection<Model.DBList.Tree> DataBases { get; set; }
+
+        #endregion
+
         /// <summary>
         /// DBList.Model
         /// </summary>
@@ -26,6 +36,8 @@ namespace SqlSample.Form.ViewModel
         {
 
             _Model = new Model.DBList();
+
+            DataBases = new ObservableCollection<Model.DBList.Tree>();
 
         }
 
