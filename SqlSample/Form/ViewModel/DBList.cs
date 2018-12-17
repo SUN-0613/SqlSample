@@ -1,10 +1,7 @@
 ﻿using AYam.Common.ViewModel;
 using System;
 using System.Collections.ObjectModel;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
 
 namespace SqlSample.Form.ViewModel
 {
@@ -49,9 +46,26 @@ namespace SqlSample.Form.ViewModel
             {
                 if (!_Model.TableName.Equals(value))
                 {
+
                     _Model.TableName = value;
                     CallPropertyChanged();
+
+                    ReadData = _Model.ReadSelectedTable();
+
                 }
+            }
+        }
+
+        /// <summary>
+        /// 選択テーブルのデータ
+        /// </summary>
+        public DataTable ReadData
+        {
+            get { return _Model.ReadData; }
+            set
+            {
+                _Model.ReadData = value;
+                CallPropertyChanged();
             }
         }
 

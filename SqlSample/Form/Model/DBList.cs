@@ -1,6 +1,7 @@
 ﻿using AYam.Common.DB;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 using SqlSample.Properties;
@@ -76,6 +77,32 @@ namespace SqlSample.Form.Model
         /// TreeViewでテーブルを選択しているか
         /// </summary>
         public bool IsSelectedTable = false;
+
+        /// <summary>
+        /// 選択テーブルのデータ
+        /// </summary>
+        private DataTable _ReadData;
+
+        /// <summary>
+        /// 選択テーブルのデータプロパティ
+        /// </summary>
+        public DataTable ReadData
+        {
+            get { return _ReadData; }
+            set
+            {
+
+                // 初期化
+                if (_ReadData != null)
+                {
+                    _ReadData.Dispose();
+                    _ReadData = null;
+                }
+
+                _ReadData = value;
+
+            }
+        }
 
         /// <summary>
         /// SQL Server 接続クラス
@@ -229,6 +256,49 @@ namespace SqlSample.Form.Model
             }
 
             return tableName;
+
+        }
+
+        /// <summary>
+        /// TreeViewで選択しているテーブルのデータを取得
+        /// </summary>
+        /// <returns>テーブルデータ一覧</returns>
+        public DataTable ReadSelectedTable()
+        {
+
+            StringBuilder query = new StringBuilder(128);
+            DataTable ReturnData = null;
+
+            try
+            {
+
+                if (!TableName.Length.Equals(0))
+                {
+
+                    // テーブルデータ取得クエリ作成
+                    query.Append(@"SELECT * FROM ").Append(TableName);
+
+                    // クエリ実行
+                    ReturnData = _SqlServer.ExecuteNonQuery(query.ToString());
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+#if DEBUG
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+#endif
+            }
+            finally
+            {
+
+                query.Clear();
+                query = null;
+
+            }
+
+            return ReturnData;
 
         }
 

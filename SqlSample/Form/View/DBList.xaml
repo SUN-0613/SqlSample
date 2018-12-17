@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SqlSample.Form.View"
         xmlns:Model="clr-namespace:SqlSample.Form.Model"
         xmlns:Ex="clr-namespace:SqlSample.Custom"
         mc:Ignorable="d"
@@ -20,7 +19,7 @@
 
         <TextBlock DockPanel.Dock="Top" Text="{Binding TableName}" Padding="5,0" />
 
-        <DataGrid />
+        <DataGrid ItemsSource="{Binding ReadData}" />
 
     </DockPanel>
 </Window>
