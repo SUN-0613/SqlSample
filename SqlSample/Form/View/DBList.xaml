@@ -5,19 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SqlSample.Form.View"
         xmlns:Model="clr-namespace:SqlSample.Form.Model"
+        xmlns:Ex="clr-namespace:SqlSample.Custom"
         mc:Ignorable="d"
         Title="DBList" Height="450" Width="800">
     <DockPanel>
 
-        <TreeView DockPanel.Dock="Left" MinWidth="200" ItemsSource="{Binding DataBases}" >
+        <Ex:TreeViewEx DockPanel.Dock="Left" MinWidth="200" ItemsSource="{Binding DataBases}" SelectedItemEx="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate DataType="Model:Tree" ItemsSource="{Binding Children}" >
                     <TextBlock Text="{Binding Name}" />
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
-        </TreeView>
+        </Ex:TreeViewEx>
 
-        <TextBlock DockPanel.Dock="Top" Text="Table.Name" />
+        <TextBlock DockPanel.Dock="Top" Text="{Binding TableName}" Padding="5,0" />
 
         <DataGrid />
 

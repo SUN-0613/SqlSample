@@ -21,6 +21,11 @@ namespace SqlSample.Form.Model
         {
 
             /// <summary>
+            /// 自身の親
+            /// </summary>
+            public Tree Parent;
+
+            /// <summary>
             /// 名称
             /// </summary>
             public string Name { get; set; }
@@ -35,6 +40,7 @@ namespace SqlSample.Form.Model
             /// </summary>
             public Tree()
             {
+                Parent = null;
                 Children = new List<Tree>();
             }
 
@@ -55,6 +61,21 @@ namespace SqlSample.Form.Model
 
             }
         }
+
+        /// <summary>
+        /// TreeView.SelectedItem
+        /// </summary>
+        public Tree SelectedItem = null;
+
+        /// <summary>
+        /// TreeViewで選択しているテーブル名
+        /// </summary>
+        public string TableName = "";
+
+        /// <summary>
+        /// TreeViewでテーブルを選択しているか
+        /// </summary>
+        public bool IsSelectedTable = false;
 
         /// <summary>
         /// SQL Server 接続クラス
@@ -151,7 +172,11 @@ namespace SqlSample.Form.Model
                         // データ呼出
                         while (dataReader.Read())
                         {
-                            DataBase.Children.Add(new Tree() { Name = dataReader.GetString(0) });
+                            DataBase.Children.Add(new Tree()
+                            {
+                                Name = dataReader.GetString(0),
+                                Parent = DataBase
+                            });
                         }
                         
                     }
@@ -174,6 +199,36 @@ namespace SqlSample.Form.Model
             }
 
             return _DataBases;
+
+        }
+
+        /// <summary>
+        /// TreeViewで選択しているテーブル名を取得
+        /// </summary>
+        /// <returns>Database名.Table名</returns>
+        public string GetSelectedTableName()
+        {
+
+            string tableName = "";
+            Tree selectedItem = SelectedItem;
+
+            IsSelectedTable = false;
+
+            while (selectedItem != null)
+            {
+
+                if (!tableName.Length.Equals(0))
+                {
+                    tableName = @".dbo." + tableName;
+                    IsSelectedTable = true;
+                }
+                tableName = selectedItem.Name + tableName;
+
+                selectedItem = selectedItem.Parent;
+
+            }
+
+            return tableName;
 
         }
 

@@ -22,6 +22,39 @@ namespace SqlSample.Form.ViewModel
         /// </summary>
         public ObservableCollection<Model.DBList.Tree> DataBases { get; set; }
 
+        /// <summary>
+        /// TreeView.SelectedItemプロパティ
+        /// </summary>
+        public Model.DBList.Tree SelectedItem
+        {
+            get { return _Model.SelectedItem; }
+            set
+            {
+
+                _Model.SelectedItem = value;
+                CallPropertyChanged();
+
+                TableName = _Model.GetSelectedTableName();
+
+            }
+        }
+
+        /// <summary>
+        /// TreeViewで選択しているテーブル名
+        /// </summary>
+        public string TableName
+        {
+            get { return _Model.TableName; }
+            set
+            {
+                if (!_Model.TableName.Equals(value))
+                {
+                    _Model.TableName = value;
+                    CallPropertyChanged();
+                }
+            }
+        }
+
         #endregion
 
         /// <summary>
