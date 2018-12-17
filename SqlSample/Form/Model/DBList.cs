@@ -147,7 +147,13 @@ namespace SqlSample.Form.Model
                     // クエリ実行
                     using (SqlDataReader dataReader = _SqlServer.ExecuteQuery(query.ToString()))
                     {
-                        DataBase.Children.Add(new Tree() { Name = dataReader.GetString(0) });
+
+                        // データ呼出
+                        while (dataReader.Read())
+                        {
+                            DataBase.Children.Add(new Tree() { Name = dataReader.GetString(0) });
+                        }
+                        
                     }
 
                 });

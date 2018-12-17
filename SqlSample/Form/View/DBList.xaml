@@ -4,11 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SqlSample.Form.View"
+        xmlns:Model="clr-namespace:SqlSample.Form.Model"
         mc:Ignorable="d"
         Title="DBList" Height="450" Width="800">
     <DockPanel>
 
-        <TreeView DockPanel.Dock="Left" MinWidth="200" />
+        <TreeView DockPanel.Dock="Left" MinWidth="200" ItemsSource="{Binding DataBases}" >
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate DataType="Model:Tree" ItemsSource="{Binding Children}" >
+                    <TextBlock Text="{Binding Name}" />
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
 
         <TextBlock DockPanel.Dock="Top" Text="Table.Name" />
 

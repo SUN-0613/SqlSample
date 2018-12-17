@@ -35,9 +35,16 @@ namespace SqlSample.Form.ViewModel
         public DBList()
         {
 
+            // new
             _Model = new Model.DBList();
-
             DataBases = new ObservableCollection<Model.DBList.Tree>();
+
+            // 一覧追加
+            _Model.GetDataBase().ForEach(DataBase => 
+            {
+                DataBases.Add(DataBase);
+            });
+
 
         }
 
@@ -49,6 +56,15 @@ namespace SqlSample.Form.ViewModel
 
             _Model.Dispose();
             _Model = null;
+
+            for (int iLoop = 0; iLoop < DataBases.Count; iLoop++)
+            {
+                DataBases[iLoop].Dispose();
+                DataBases[iLoop] = null;
+            }
+            DataBases.Clear();
+            DataBases = null;
+
 
         }
     }
