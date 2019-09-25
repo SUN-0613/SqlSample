@@ -1,4 +1,4 @@
-﻿using AYam.Common.ViewModel;
+﻿using AYam.Common.MVVM;
 using System;
 using System.Collections.ObjectModel;
 using System.Data;
@@ -9,7 +9,7 @@ namespace SqlSample.Form.ViewModel
     /// <summary>
     /// DBList.ViewModel
     /// </summary>
-    public class DBList : VMBase, IDisposable
+    public class DBList : ViewModelBase, IDisposable
     {
 
         #region BindingProperty
